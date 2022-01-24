@@ -1,0 +1,29 @@
+{
+  "name": "@vgs/netlify-plugin-vgs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "js-yaml": "^4.1.0",
+    "simple-oauth2": "^4.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verygoodsecurity/netlify-plugin-vgs.git"
+  },
+  "keywords": [
+    "netlify-plugin",
+    "netlify"
+  ],
+  "author": "dima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/verygoodsecurity/netlify-plugin-vgs/issues"
+  },
+  "homepage": "https://github.com/verygoodsecurity/netlify-plugin-vgs#readme"
+}
