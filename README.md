@@ -121,7 +121,7 @@ https://user-images.githubusercontent.com/455045/150997930-37a7825d-83f0-4a45-8a
 
 ## Add ENV variables in the Netlify Dashboard
 
-Go to Site Settings -> Build & deploy -> Environment and add those 3 variables with values you got in previous steps:
+Go to Site Settings -> Build & deploy -> Environment and add those 3 variables:
 ```
 VGS_CLIENT_ID=
 VGS_CLIENT_SECRET=
