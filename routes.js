@@ -3,12 +3,11 @@ const {
   makeHeaders,
   getAccessToken,
 } = require('./utils');
-
-const vaultApiUrl = 'https://api.sandbox.verygoodsecurity.com';
+const config = require('./config/config.json');
 
 async function getRoutes(tenantId) {
   const accessToken = await getAccessToken();
-  const url = `${vaultApiUrl}/rule-chains`;
+  const url = `${config.vaultApiUrl}/rule-chains`;
   const params = {
     method: 'GET',
     headers: makeHeaders(accessToken, tenantId),
@@ -18,28 +17,14 @@ async function getRoutes(tenantId) {
     const response = await fetchJSONApi(url, params);
     return response.data.data;
   } catch (error) {
-    console.log('getRoutes error', error);
+    throw new Error(error);
   }
 }
 
-async function createRoute(vaultApiUrl, tenantId, route, refreshToken) {
-  const accessToken = await getAccessToken(refreshToken);
-
-  const url = `${vaultApiUrl}/rule-chains`;
-  const params = {
-    method: 'POST',
-    headers: makeHeaders(accessToken, tenantId),
-    data: route,
-  };
-  const response = await fetchJSONApi(url, params);
-
-  return response.data.data;
-}
-
 async function updateRoute(tenantId, route) {
-  console.log('updateRoute', route.data[0])
+  console.log('[vgs-plugin] updating route', route.data[0].id)
   const accessToken = await getAccessToken();
-  const url = `${vaultApiUrl}/rule-chains/${route.data[0].id}`;
+  const url = `${config.vaultApiUrl}/rule-chains/${route.data[0].id}`;
   const params = {
     method: 'PUT',
     headers: makeHeaders(accessToken, tenantId),
@@ -50,14 +35,14 @@ async function updateRoute(tenantId, route) {
 
   try {
     const response = await fetchJSONApi(url, params);
+    console.log('[vgs-plugin] route updated', route.data[0].id)
     return response.data.data;
   } catch (error) {
-    console.log('updateRoute error', error.response.data);
+    throw new Error(error);
   }
 }
 
 module.exports = {
   getRoutes,
   updateRoute,
-  createRoute,
 }

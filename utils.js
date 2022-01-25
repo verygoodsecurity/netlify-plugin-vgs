@@ -1,6 +1,7 @@
 const axios = require('axios');
 const fs = require('fs')
 const yaml = require('js-yaml');
+const config = require('./config/config.json');
 
 const { VGS_CLIENT_ID, VGS_CLIENT_SECRET } = process.env;
 const { ClientCredentials } = require('simple-oauth2');
@@ -32,22 +33,18 @@ async function fetchJSONApi(url, options) {
 }
 
 async function getAccessToken() {
-  const config = {
+  const oauthConfig = {
     client: {
       id: VGS_CLIENT_ID,
       secret: VGS_CLIENT_SECRET
     },
-    auth: {
-      tokenHost: 'https://auth.verygoodsecurity.com',
-      tokenPath: '/auth/realms/vgs/protocol/openid-connect/token',
-      authorizePath: '/auth/realms/vgs/protocol/openid-connect/auth',
-    },
+    auth: config.auth,
     options: {
       authorizationMethod: 'body'
     }
   };
 
-  const client = new ClientCredentials(config);
+  const client = new ClientCredentials(oauthConfig);
 
   const tokenParams = {
     scope: ['routes:write'],
@@ -57,7 +54,7 @@ async function getAccessToken() {
     const response = await client.getToken(tokenParams, {json: true});
     return response.token.access_token;
   } catch (error) {
-    console.log('Access Token error', error);
+    throw new Error(error);
   }
 }
 

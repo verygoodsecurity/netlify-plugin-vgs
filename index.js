@@ -6,14 +6,14 @@ const { VGS_VAULT_ID} = process.env;
 
 module.exports = {
   onPreBuild: async (params) => {
-    console.log("hello from vgs!")
+    console.log("[vgs-plugin] onPreBuild, vaultId:", VGS_VAULT_ID)
     const routeConfig = getRouteConfig();
 
     if(routeConfig) {
-      console.log('starting route update')
-      const res = await updateRoute(VGS_VAULT_ID, routeConfig);
+      console.log('[vgs-plugin] starting route update')
+      await updateRoute(VGS_VAULT_ID, routeConfig);
 
-      console.log('route update finished!', res)
+      console.log('[vgs-plugin] route update finished!')
     }
   },
 }

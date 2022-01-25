@@ -1,0 +1,8 @@
+{
+  "vaultApiUrl": "https://api.sandbox.verygoodsecurity.com",
+  "auth": {
+    "tokenHost": "https://auth.verygoodsecurity.com",
+    "tokenPath": "/auth/realms/vgs/protocol/openid-connect/token",
+    "authorizePath": "/auth/realms/vgs/protocol/openid-connect/auth"
+  }
+}
