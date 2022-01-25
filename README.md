@@ -1,10 +1,10 @@
 # VGS Plugin for Netlify (alpha version)
-The plugin lets you update VGS routes at the same time as your site deployments happen, which is making your deployments idempotent.
+The plugin lets you update VGS routes at the same time as your site deployments, which make your deployments idempotent.
 [Example project](https://github.com/verygoodsecurity/netlify-plugin-example)
 
 ## Project Setup
 
-1. First, you will need to create VGS account [here](https://dashboard.verygoodsecurity.com)
+1. First, you will need to create a VGS account [here](https://dashboard.verygoodsecurity.com)
 2. Then, create a simple index.html file with a form:
 ```html
 <!DOCTYPE html>
@@ -121,7 +121,7 @@ https://user-images.githubusercontent.com/455045/150997930-37a7825d-83f0-4a45-8a
 
 ## Add ENV variables in the Netlify Dashboard
 
-Go to Site Settings -> Build & deploy -> Environment and add those 3 variables:
+Go to Site Settings -> Build & deploy -> Environment and add those 3 variables with values you got in previous steps:
 ```
 VGS_CLIENT_ID=
 VGS_CLIENT_SECRET=
