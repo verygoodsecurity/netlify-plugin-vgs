@@ -1,5 +1,5 @@
-# VGS Plugin for Netlify (alpha version)
-The plugin lets you update VGS routes at the same time as your site deployments. Without this plugin you need to manually update VGS routes via UI/cli or setting up a separate CI pipeline.
+# VGS Plugin for Netlify
+The plugin lets you update VGS routes at the same time as your site deployment happens. Without this plugin, you need to manually update VGS routes via UI/CLI or set up a separate CI pipeline.
 [Example project](https://github.com/verygoodsecurity/netlify-plugin-example)
 
 ## Project Setup
