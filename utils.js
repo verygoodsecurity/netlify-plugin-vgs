@@ -1,14 +1,14 @@
-const axios = require('axios');
-const fs = require('fs')
-const yaml = require('js-yaml');
-const config = require('./config/config.json');
+import axios from 'axios';
+import fs from 'fs';
+import yaml from 'js-yaml';
+import { ClientCredentials } from 'simple-oauth2';
+import config from './config/config.js';
 
 const { VGS_CLIENT_ID, VGS_CLIENT_SECRET } = process.env;
-const { ClientCredentials } = require('simple-oauth2');
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-function makeHeaders(accessToken, tenantId) {
+export function makeHeaders(accessToken, tenantId) {
   const headers = {
     'Content-Type': 'application/vnd.api+json',
     Accept: 'application/vnd.api+json',
@@ -22,7 +22,7 @@ function makeHeaders(accessToken, tenantId) {
   return headers;
 }
 
-async function fetchJSONApi(url, options) {
+export async function fetchJSONApi(url, options) {
   const params = {
     url,
     method: options.method,
@@ -32,7 +32,7 @@ async function fetchJSONApi(url, options) {
   return axios.request(params);
 }
 
-async function getAccessToken() {
+export async function getAccessToken() {
   const oauthConfig = {
     client: {
       id: VGS_CLIENT_ID,
@@ -58,17 +58,10 @@ async function getAccessToken() {
   }
 }
 
-function getRouteConfig(path = './vgs/routes.yaml') {
+export function getRouteConfig(path = './vgs/routes.yaml') {
   if (fs.existsSync(path)) {
     return yaml.load(fs.readFileSync(path, 'utf8'));
   } else {
     return null;
   }
-}
-
-module.exports = {
-  getRouteConfig,
-  makeHeaders,
-  fetchJSONApi,
-  getAccessToken,
 }
