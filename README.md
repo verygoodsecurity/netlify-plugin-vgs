@@ -30,6 +30,11 @@ netlify env:set VGS_VAULT_ID <vaultId>
 ```
 
 ## Source Code
+First, create a folder and initialize netlify site by running:
+```bash
+netlify init
+```
+
 Create a simple `src/index.html` file with a form:
 
 ```html
@@ -192,7 +197,7 @@ Now, create `netlify.toml` file with the following contents:
 ```toml
 [build]
   publish = "dist/"
-  command = "npm build"
+  command = "npm run build"
 
 [dev]
   command = "npm start"
@@ -216,7 +221,7 @@ And the last thing, create a `package.json` file, it should contain:
     "build": "parcel build"
   },
   "devDependencies": {
-    "@vgs/netlify-plugin-vgs": "0.0.2",
+    "@vgs/netlify-plugin-vgs": "0.0.4",
     "parcel": "^2.6.2"
   }
 }

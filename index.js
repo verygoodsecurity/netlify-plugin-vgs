@@ -1,4 +1,4 @@
-import { updateRoute, applyCollectRoute } from './routes.js';
+import { updateRoute, applyCollectRoute, tokenizationCollectRouteTemplate } from './routes.js';
 import { getRouteConfig } from './utils.js';
 import { NetlifyAPI } from 'netlify';
 
@@ -12,7 +12,6 @@ export default {
     const netlify = new NetlifyAPI(NETLIFY_API_TOKEN);
 
     const site = await netlify.getSite({ site_id: SITE_ID });
-    console.log("[vgs-plugin] site:", site.build_settings);
     const routeConfig = getRouteConfig();
 
     if(routeConfig) {
@@ -33,7 +32,7 @@ export default {
             build_settings: {
               env: {
                 ...site.build_settings.env,
-                ENV_TEST: 'test3',
+                VGS_ROUTE_ID: tokenizationCollectRouteTemplate.id
               }
             },
           }

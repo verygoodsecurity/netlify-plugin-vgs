@@ -90,7 +90,6 @@ export async function createRoute(tenantId, routeData) {
 
 export async function applyCollectRoute(vaultId) {
   const routesList = await getRoutes(vaultId);
-  console.log('[vgs-plugin] routesList:', routesList);
   const collectRouteExists = !!routesList.find(route => route?.attributes?.tags?.source === 'tokenizationCollect');
   console.log('[vgs-plugin] collectRouteExists:', collectRouteExists);
 
