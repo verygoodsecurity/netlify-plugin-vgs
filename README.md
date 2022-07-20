@@ -1,7 +1,7 @@
 # VGS Plugin for Netlify
 
 The plugin makes your integration with VGS smoother by helping with:
-- configuring your vault routes, to work with collect.js
+- configuring your vault routes with collect.js confguration
 - applying all routes from `vgs/routes.yaml` file, so they will be updated with each netlify deployment.
 
 [Example project](https://github.com/verygoodsecurity/netlify-plugin-example)
@@ -22,7 +22,7 @@ In this guide, we cover:
 First, get `clientId` and `clientSecret` credentials by following [this guide]([VGS CLI service account](https://www.verygoodsecurity.com/docs/development/vgs-git-flow/#1-provision-a-service-account))
 Then, get the ID of your vault `vaultId` in the [VGS Dashboard](https://dashboard.verygoodsecurity.com)
 
-Then, let's create environment variables on the the Netlify side, so they will be available during each build (go to the Platform section and copy it from the top of the page)
+Finally, let's create environment variables on the Netlify side, so they will be available during each build (go to the Platform section and copy it from the top of the page)
 ```bash
 netlify env:set VGS_CLIENT_ID <clientId>
 netlify env:set VGS_CLIENT_SECRET <clientSecret>
@@ -241,12 +241,13 @@ your-app
 └─ package.json
 ```
 ## Start local server
-Now, you are ready to start the development server, you can do it by running
+Now, you are ready to start the development server, you can do it by running. It will build your app and open the browser with your running app at `http://localhost:8888`
 ```bash
 netlify build && netlify dev
 ```
+
 ## Deploy to production
-This command will deploy your code to production
+This command will build and deploy your code to production. In the output you will find a public URL with your app. 
 ```bash
 netlify build && netlify deploy --production
 ```
