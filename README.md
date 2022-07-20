@@ -15,11 +15,11 @@ The plugin makes your integration with VGS smoother by helping with:
 ## Overview
 In this guide, we cover:
 - How to install and use vgs-netlify-plugin
-- How to setup local development environment and work with netlify/VGS collect
+- How to set up a local development environment and work with netlify/VGS collect
 
 ## Configure Netlify
 
-First, get `clientId` and `clientSecret` credentials by following [this guide]([VGS CLI service account](https://www.verygoodsecurity.com/docs/development/vgs-git-flow/#1-provision-a-service-account))
+First, get `clientId` and `clientSecret` credentials by following [this guide](https://www.verygoodsecurity.com/docs/development/vgs-git-flow/#1-provision-a-service-account).
 Then, get the ID of your vault `vaultId` in the [VGS Dashboard](https://dashboard.verygoodsecurity.com)
 
 Finally, let's create environment variables on the Netlify side, so they will be available during each build (go to the Platform section and copy it from the top of the page)
@@ -221,7 +221,7 @@ And the last thing, create a `package.json` file, it should contain:
     "build": "parcel build"
   },
   "devDependencies": {
-    "@vgs/netlify-plugin-vgs": "0.0.4",
+    "@vgs/netlify-plugin-vgs": "0.0.6",
     "parcel": "^2.6.2"
   }
 }

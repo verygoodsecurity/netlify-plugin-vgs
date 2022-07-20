@@ -21,10 +21,12 @@ export default {
       console.log('[vgs-plugin] route update finished!')
     }
 
-    await applyCollectRoute(VGS_VAULT_ID);
+    const collectRoute = await applyCollectRoute(VGS_VAULT_ID);
 
     console.log('[vgs-plugin] netlify updateSite')
     try {
+      console.log('[vgs-plugin] adding env variable VGS_ROUTE_ID', collectRoute.id)
+
       await netlify.updateSite(
         {
           site_id: SITE_ID, 
@@ -32,7 +34,7 @@ export default {
             build_settings: {
               env: {
                 ...site.build_settings.env,
-                VGS_ROUTE_ID: tokenizationCollectRouteTemplate.id
+                VGS_ROUTE_ID: collectRoute.id
               }
             },
           }
