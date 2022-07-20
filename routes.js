@@ -50,7 +50,6 @@ export async function updateRoute(tenantId, route) {
 }
 
 export const tokenizationCollectRouteTemplate = {
-  id: '7f0c8bd9-4f67-4a49-a7b3-ade97657a1c0',
   destination_override_endpoint: config.defaultRuleTokenizeHostOverrideEndpoint,
   entries: [],
   host_endpoint: config.defaultRuleTokenizeHostEndpoint,
@@ -90,13 +89,14 @@ export async function createRoute(tenantId, routeData) {
 
 export async function applyCollectRoute(vaultId) {
   const routesList = await getRoutes(vaultId);
-  console.log('[vgs-plugin] routesList:', routesList);
-  const collectRouteExists = !!routesList.find(route => route?.attributes?.tags?.source === 'tokenizationCollect');
-  console.log('[vgs-plugin] collectRouteExists:', collectRouteExists);
+  let collectRoute = routesList.find(route => route?.attributes?.tags?.source === 'tokenizationCollect');
+  console.log('[vgs-plugin] collectRouteExists:', !!collectRoute);
 
-  if(!collectRouteExists) {
+  if(!collectRoute) {
     console.log('[vgs-plugin] there is no collect route, creating one')
-    await createRoute(vaultId, tokenizationCollectRouteTemplate);
+    collectRoute = await createRoute(vaultId, tokenizationCollectRouteTemplate);
     console.log('[vgs-plugin] route creation finished!')
   }
+
+  return collectRoute;
 }
