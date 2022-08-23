@@ -1,8 +1,6 @@
 # VGS Plugin for Netlify
 
-The plugin makes your integration with VGS smoother by helping with:
-- configuring your vault routes with collect.js confguration
-- applying all routes from `vgs/routes.yaml` file, so they will be updated with each netlify deployment.
+This plugin streamlines your integration with VGS and Netlify by auto-configuring your VGS vault with the settings required to work with both systems.
 
 [Example project](https://github.com/verygoodsecurity/netlify-plugin-example)
 
@@ -17,23 +15,26 @@ In this guide, we cover:
 - How to install and use vgs-netlify-plugin
 - How to set up a local development environment and work with netlify/VGS collect
 
-## Configure Netlify
+## Implementation Instructions
 
-First, get `clientId` and `clientSecret` credentials by following [this guide](https://www.verygoodsecurity.com/docs/development/vgs-git-flow/#1-provision-a-service-account).
-Then, get the ID of your vault `vaultId` in the [VGS Dashboard](https://dashboard.verygoodsecurity.com)
+### Configure Netlify
 
-Finally, let's create environment variables on the Netlify side, so they will be available during each build (go to the Platform section and copy it from the top of the page)
+First, create a folder and initialize netlify site by running:
+```bash
+netlify init
+```
+
+Then, get `clientId` and `clientSecret` credentials by following [this guide](https://www.verygoodsecurity.com/docs/development/vgs-git-flow/#1-provision-a-service-account).
+Now, get the ID of your vault or `vaultId`, you can find it in the [VGS Vault Dashboard](https://dashboard.verygoodsecurity.com)
+
+Finally, let's create environment variables on the Netlify side, so they will be available during each build
 ```bash
 netlify env:set VGS_CLIENT_ID <clientId>
 netlify env:set VGS_CLIENT_SECRET <clientSecret>
 netlify env:set VGS_VAULT_ID <vaultId>
 ```
 
-## Source Code
-First, create a folder and initialize netlify site by running:
-```bash
-netlify init
-```
+### Configure your website
 
 Create a simple `src/index.html` file with a form:
 
