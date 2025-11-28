@@ -8,7 +8,7 @@
     "axios": "^0.25.0",
     "js-yaml": "^4.1.0",
     "netlify": "^11.0.2",
-    "simple-oauth2": "^4.3.0"
+    "simple-oauth2": "^5.0.0"
   },
   "devDependencies": {},
   "scripts": {
